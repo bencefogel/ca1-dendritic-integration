@@ -15,8 +15,8 @@ def simulate(model, tstop):
     trec.record(h._ref_t)
 
     v_segments, v = record_membrane_potential()
-    intrinsic_segments, intrinsic_currents = record_intrinsic_currents()
-    synaptic_segments, synaptic_currents = record_synaptic_currents(model)
+    # intrinsic_segments, intrinsic_currents = record_intrinsic_currents()
+    # synaptic_segments, synaptic_currents = record_synaptic_currents(model)
 
     h.celsius = 35
     h.finitialize(-68.3)
@@ -29,11 +29,9 @@ def simulate(model, tstop):
     taxis_downsampled = np.linspace(min(taxis_unique), max(taxis_unique), x)
 
     v_segments, v_arrays = preprocess_membrane_potential_data(v_segments, v, taxis_unique, index_unique)
-    intrinsic_segments, intrinsic_arrays = preprocess_intrinsic_data(intrinsic_segments, intrinsic_currents, taxis_unique, index_unique)
-    synaptic_segments, synaptic_arrays = preprocess_synaptic_data(synaptic_segments, synaptic_currents, taxis_unique, index_unique)
+    # intrinsic_segments, intrinsic_arrays = preprocess_intrinsic_data(intrinsic_segments, intrinsic_currents, taxis_unique, index_unique)
+    # synaptic_segments, synaptic_arrays = preprocess_synaptic_data(synaptic_segments, synaptic_currents, taxis_unique, index_unique)
 
     simulation_data = {'membrane_potential_data': [v_segments, v_arrays],
-                       'intrinsic_data': [intrinsic_segments, intrinsic_arrays],
-                       'synaptic_data': [synaptic_segments, synaptic_arrays],
                        'taxis': taxis_downsampled}
     return simulation_data

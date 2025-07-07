@@ -8,7 +8,7 @@ modpath = 'simulator/model/density_mechs'
 h.nrn_load_dll(modpath + '\\nrnmech.dll')
 
 
-def init_activeCA1(model):
+def init_activeCA1(model, gcar, gkslow):
     model.soma.insert('nax')
     model.soma.gbar_nax = model.gna_soma
     model.soma.insert('kdr')
@@ -133,9 +133,9 @@ def init_activeCA1(model):
     # Adding Ca and K_slow conductances
     for sec in h.all_apicals:
         sec.insert('car')
-        sec.gmax_car = 0  # 0.006
+        sec.gmax_car = gcar
         sec.insert('kslow')
-        sec.gmax_kslow = 0  # 0.001
+        sec.gmax_kslow = gkslow
 
 
 def addClustLocs(model, nsyn, Nclust, Ncell_per_clust, seed, midle=False, clocs=None, Lmin=60):
