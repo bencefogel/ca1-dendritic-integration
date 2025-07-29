@@ -20,10 +20,10 @@ The main goal is to study non-linear synaptic summation, particularly how multip
 - `simulator/ModelSimulator.py`  
   Builds and runs the neuron model.
   
-- `main_single_dend.py`  
+- `io_simulations_and_plots/main_single_dend.py`  
   Runs a simulation with preset parameters and saves results.
 
-- `input_output_selected_nsyns.ipynb`  
+- `io_simulations_and_plots/input_output_selected_nsyns.ipynb`  
   Jupyter notebook for loading results and visualizing traces and input-output curves.
 
 ---
