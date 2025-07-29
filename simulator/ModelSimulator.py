@@ -29,10 +29,10 @@ class ModelSimulator:
         self.connections = {}
         self.segment_areas = pd.DataFrame()
 
-    def build_model(self, dends: list, gcar, gkslow) -> CA1:
+    def build_model(self, dends: list, gcar, gkslow, gcar_trunk, gkslow_trunk) -> CA1:
         print("Building CA1 model...")
         model = CA1()
-        init_activeCA1(model, gcar, gkslow)
+        init_activeCA1(model, gcar, gkslow, gcar_trunk, gkslow_trunk)
 
         # Add synapses to model
         from simulator.model.ca1_functions import genDendLocs
@@ -49,6 +49,6 @@ class ModelSimulator:
     def run_simulation(self, model: CA1, direction: str) -> tuple:
         print("Running simulation...")
 
-        simulation_data_single, simulation_data_together = SIM_nsynIteration(model, maxNsyn=30, tInterval=0.3, onset=0.3, direction=direction,
-                                                                             tstop=900)
+        simulation_data_single, simulation_data_together = SIM_nsynIteration(model, maxNsyn=30, tInterval=0.3, onset=100, direction=direction,
+                                                                             tstop=200)
         return simulation_data_single, simulation_data_together

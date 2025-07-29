@@ -15,9 +15,9 @@ def SIM_nsynIteration(model, maxNsyn, tInterval, onset, direction='IN', tstop=30
     # for nsyn in np.arange(1, maxNsyn+1): # 1 - N
     for nsyn in np.arange(1, maxNsyn+1):
         if (direction=='OUT'):
-            etimes = np.array([[nsyn-1, onset * 1000]]) # 0 - N-1
+            etimes = np.array([[nsyn-1, onset]]) # 0 - N-1
         else:
-            etimes = np.array([[maxNsyn - nsyn, onset * 1000]]) # N-1 - 0
+            etimes = np.array([[maxNsyn - nsyn, onset]]) # N-1 - 0
         fih = simulation.h.FInitializeHandler(1, lambda: initSpikes_dend(model, etimes))
 
         # def simulate(model, t_stop=100, NMDA=False, recDend=False, i_recDend=11, x_recDend=0.5, spines=False, i_recSpine=11):
@@ -29,7 +29,7 @@ def SIM_nsynIteration(model, maxNsyn, tInterval, onset, direction='IN', tstop=30
 #   next, synapses are activated together
 #     for nsyn in np.arange(1, maxNsyn+1):
     for nsyn in [8, 10, 15, 20]:
-        etimes = genDSinput(nsyn, maxNsyn, tInterval, onset * 1000, direction)
+        etimes = genDSinput(nsyn, maxNsyn, tInterval, onset, direction)
         fih = simulation.h.FInitializeHandler(1, lambda: initSpikes_dend(model, etimes))
         sim_data = simulation.simulate(model, tstop)
         sim_data['etimes'] = etimes
